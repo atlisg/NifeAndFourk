@@ -1,0 +1,250 @@
+% A basic LaTeX document for a handin with a
+% standard RU title page
+
+% If you want the title to appear on a separate
+% page, change notitlepage to titlepage
+\documentclass[11pt,a4paper,notitlepage]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% If your hand-in is in icelandic change english to icelandic
+% Note: This has nothing to do with Icelandic characters, they
+% can always be used. This just tells other packages what
+% language you are using and changes the hyphenation used by LaTeX
+% If icelandic is selected, a shorthand, "` and "', is also included
+% for Icelandic quotation marks. They can also obtained by using
+% ,, and ``
+\usepackage[icelandic]{babel}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{enumerate}
+% To use the whole A4-page
+% See: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/geometry/geometry.pdf
+% and http://en.wikibooks.org/wiki/LaTeX/Document_Structure
+\usepackage[footskip=35pt]{geometry}
+% For header and footer
+% See: ftp://ctan.tug.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+% and http://en.wikibooks.org/wiki/LaTeX/Document_Structure
+\usepackage{fancyhdr}
+% For prettier tables
+% See: http://ctan.mackichan.com/macros/latex/contrib/booktabs/booktabs.pdf
+% and  http://en.wikibooks.org/wiki/LaTeX/Tables
+\usepackage{booktabs}
+% Listings allow us to include pretty code in our document
+\usepackage{listings}
+% A pretty monospace font, will for example appear inside listings and \texttt{}
+\usepackage{inconsolata}
+\usepackage{pgfplots}
+\usepackage{wrapfig}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                        Setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set the margins of the paper. By default LaTeX uses huge margins
+\geometry{includeheadfoot, margin=2.5cm}
+% you can also use
+% \geometry{a4paper}
+% End of margins setup
+
+% Fill in any relevant information
+% Leave the fields inside the {} empty if they do not apply
+\newcommand{\students}{
+    Atli Sævar Guðmundsson, Ægir Már Jónsson 
+}
+\newcommand{\studentemails}{
+    atlisg12@ru.is, aegir13@ru.is
+}
+\newcommand{\semester}{Haust 2014}
+\newcommand{\coursename}{Reiknirit, T-303-REIR}
+\newcommand{\ssn}{kt. 030180-3489, 050692-90210}
+\newcommand{\group}{::Hnífapar::}
+\newcommand{\assignment}{D5 - Rauð-svört tré (og tæting)}
+\newcommand{\teachingassistant}{Dæmatímakennari: Tómas Ken Magnússon}
+\newcommand{\teacher}{Kennari: Magnús Már Halldórsson}
+\newcommand{\problemtitle}{Dæmi}
+\newcommand{\solutiontitle}{Lausn}
+\newcommand{\programminglanguage}{java}
+\newcommand{\dateofcompilation}{\today}
+\newcommand{\code}[5]{\texttt{#5}}
+
+% Setup header and footer
+% Headers
+\pagestyle{fancy} % To get the header and footer
+\chead{\small \textsc{\assignment}}
+\rhead{\small \textsc{\coursename}}
+\lhead{\small \textsc{\group}}
+% Footers
+%\lfoot{Left footer text}
+%\cfoot{\thepage} % This is the default behaviour
+%\rfoot{Right footer text}
+
+% If you don't want a line below the header or above the footer,
+% change the appropriate header/footerrulewidth to 0pt
+\setlength{\headheight}{15.2pt} % This is set to avoid a warning
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+% End of header and footer setup
+
+% Setup Problem/Solution environments
+\theoremstyle{plain}
+\newtheorem{problem}{\problemtitle}
+
+\theoremstyle{remark}
+\newtheorem*{solution}{\solutiontitle}
+% Custom problem (so you can provide the problem name)
+\newenvironment{cproblem}[1]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries \problemtitle}\hskip \labelsep {\bfseries#1.}]\begin{itshape}}{\end{itshape}\end{trivlist}}
+% End of Problem/Solution environments setup
+
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{lightgray}{gray}{0.95}
+
+% Feel free to edit these yourself
+\lstset{ %
+  backgroundcolor=\color{lightgray},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  language=\programminglanguage,   % Set
+  basicstyle=\ttfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  columns=fixed,
+  keywordstyle=\color{blue},       % keyword style
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=7pt,                   % how far the line-numbers are from the code
+  numberstyle=\ttfamily\color{gray}, % the style that is used for the line-numbers
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+
+        % Add the title page command
+        \newcommand{\maketitlepage}[1]
+        {
+            \begin{titlepage}
+
+                \begin{center}
+                    \includegraphics[width=0.55\textwidth]{./rulogo}\\[1.5cm]
+
+                    \text{\huge \semester}\\[0.8cm]
+
+                    {\textsc{\Huge \coursename}}\\[0.4cm]
+                    \textsc{\LARGE }\\[2.5cm]
+
+                    \textbf{\textsc{\Huge #1}}\\[3cm]
+
+
+                    \text{\huge \students}\\[0.4cm]
+                    \text{\LARGE \ssn}\\[0.4cm]
+                    \text{\Large \studentemails}\\[0.8cm]
+
+                    \textsc{\huge \group}\\[2cm]
+                    \text{\Large \dateofcompilation}
+
+
+
+                \end{center}
+
+                \vfill
+
+                % You may also want to add the name of your teaching assistant
+                \begin{center}
+                	\text{\LARGE \teacher} \\ [0.2cm]
+                    \text{\LARGE \teachingassistant}
+                \end{center}
+
+
+            \end{titlepage}
+        }
+        \newcommand{\command}[1]{\texttt{\textbackslash{}\verb !#1}}
+
+        %%%%%%%%%%%%%%%%%%%%%%%% END OF SETUP %%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+% Create the title page
+    \maketitlepage{\assignment}
+
+\section*{Problems}
+
+\begin{problem} % Dæmi 1
+	(15\%) (Problem 3.3.16) Show the result of inserting the letter n into the red-black BST shown on page 450 (only the search path is shown, and you need to include only these nodes in your answer).
+\end{problem}
+
+\begin{solution}
+\mbox{} \\
+	
+\end{solution}
+\mbox{}
+\begin{problem} % Dæmi 2
+	(20\%) (Problem 3.3.5) Draw all structurally different 2-3 trees for N = 7, 8, 9, and 10. (The trees for N from 1 to 6 are shown on p. 449)
+\end{problem}
+
+\begin{solution}
+\mbox{} \\
+	
+\end{solution}
+\mbox{}
+\begin{problem}  % Dæmi 3
+	(20\%) (Problem 3.3.42) Write a program that computes the percentage of red nodes in a given red-black tree. Test your program by running at least 100 trials of the experiment of inserting N random keys into an initially empty tree, for N = 10.000, 100.000, and 1.000.000, and formulate a general hypothesis of the proportion of nodes that are red.
+\end{problem}
+
+\begin{solution}
+\mbox{} \\ 
+	
+\end{solution}
+\mbox{}
+\begin{problem} % Dæmi 4
+	(25\%) Add the method \lstinline|bringToRoot(Key k)| to the class \lstinline|BST_D5|, that uses rotations to change the tree so that that the node with key k becomes the root. The running time of the method should be proportional to the depth of the node that contains the key. What is the order of growth of the complexity of this method? If the method is repeatedly applied to only three different keys, what becomes the average cost of the method?
+\end{problem}
+
+\begin{solution}
+\mbox{} \\
+	Innlegg nr. X á Mooshak
+\end{solution}
+\mbox{}
+\begin{problem} % Dæmi 5
+	(20\%) (Problem 3.4.4) Write a class \lstinline|OptimalHash|  with a main method that finds values of a and M, with M as small as possible, such that the hash function (a * k) \% M for transforming the k-th letter of the alphabet into a table index produces distinct valuues (no collisions) for the keys S E A R C H X M P L. The result is known as a perfect hash function.
+\end{problem}
+
+\begin{solution}
+	\mbox{} \\
+	
+\end{solution}
+
+\section*{Bonus problems}
+\begin{problem} % Dæmi 6
+	(7\%) (Problem 3.3.22) Find a sequence of keys to insert into a BST and into a red-black BST such that the height of the BST is less than the height of the red-black BST, or prove that no such sequence is possible.
+\end{problem}
+
+\begin{solution}
+	\mbox{} \\
+	
+\end{solution}
+\mbox{}
+\begin{problem} % Dæmi 7
+	(10\%) Design an algorithm that takes a sequence of N document words and a sequence of M query words and find the shortest interval in which the M query words appear in the document in the order given. The length of an interval is the number of words in that interval.
+\end{problem}
+
+\begin{solution}
+	\mbox{} \\
+	
+\end{solution}
+
+\end{document}
+
